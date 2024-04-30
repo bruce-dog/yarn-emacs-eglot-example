@@ -1,46 +1,28 @@
-# Getting Started with Create React App
+# Incompatibility between yarn and emacs eglot
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+This project was bootstrapped with
+[Create React App](https://github.com/facebook/create-react-app):
 
-## Available Scripts
+```bash
+yarn create react-app yarn-emacs-eglot-example --template typescript
+```
 
-In the project directory, you can run:
+This is a toy repository for examining the incompatibility between
+[yarn](https://yarnpkg.com/) and
+[eglot](https://www.gnu.org/software/emacs/manual/html_node/eglot/).
 
-### `yarn start`
+There are
+[outdated lsp-mode instructions](https://yarnpkg.com/getting-started/editor-sdks#emacs)
+in yarn's documentation. You need to run `yarn dlx @yarnpkg/sdks base` to try
+this yourself, but I've already created the equivalent `.dir-locals.el` file in
+this repo for
+[project-specific eglot configuration](https://www.gnu.org/software/emacs/manual/html_node/eglot/Project_002dspecific-configuration.html).
+If you run the aforementioned command and have already configured emacs to use
+typescript-language-server, you'll observe that emacs can jump to definitions
+within this project just fine, but attempting to jump to a dependency's
+definition results in an error. For TypeScript dependencies, you'll still get
+type checking and all the nice things that come with it.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
-
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
-
-### `yarn test`
-
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `yarn build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `yarn eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
+My recommendation is to use `npm` for local development, even if you continue to
+use `yarn` for everything else. Just be careful not to check in any npm-related
+files. 
