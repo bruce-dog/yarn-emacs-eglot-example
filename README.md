@@ -15,16 +15,14 @@ There are
 [outdated lsp-mode instructions](https://yarnpkg.com/getting-started/editor-sdks#emacs)
 in yarn's documentation which can be adapted for eglot. You need to run
 `yarn dlx @yarnpkg/sdks base` to try this yourself. I've created a sample
-`.dir-locals.el` file in this repo for
-[project-specific eglot configuration](https://www.gnu.org/software/emacs/manual/html_node/eglot/Project_002dspecific-configuration.html),
-but you need to change the hard-coded path in there according to where you check
-out this repository.
+`.dir-locals.el` file in this repo in order to make eglot run
+`typescript-language-server` through yarn.
 
-Having done all that, if you have already configured emacs to use
-typescript-language-server, you'll observe that emacs can jump to definitions
-within this project just fine, but attempting to jump to a dependency's
-definition results in an error. For TypeScript dependencies, you'll still get
-type checking and all the nice things that come with it.
+Having run the above command, if you have already configured emacs to use eglot,
+you'll observe that emacs can jump to definitions within this project just fine,
+but attempting to jump to a dependency's definition results in an error. For
+TypeScript dependencies, you'll still get type checking and all the nice things
+that come with it.
 
 My recommendation is to use `npm` for local development, even if you continue to
 use `yarn` for everything else. Just be careful not to check in any npm-related
